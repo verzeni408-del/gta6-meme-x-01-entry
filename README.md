@@ -12,5 +12,5 @@ the play code, and the bounty link.
 The house reads the post itself from X. This repository only names the
 post (`POST.json`); `main.ts` copies it to the output directory.
 
-Post: https://x.com/Sellaclt11/status/2123545243664765071
+Post: https://x.com/Sellaclt11/status/2123554874013192381
 Bounty: https://make.fun/bounty/gta6-meme-x-01
