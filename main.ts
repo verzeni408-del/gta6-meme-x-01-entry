@@ -18,10 +18,14 @@ const outDir = process.env.MAKEFUN_OUTPUT_DIR || join(here, "out");
 const postPath = join(botDir, "POST.json");
 const raw = readFileSync(postPath, "utf8");
 const post = JSON.parse(raw);
-if (typeof post.url !== "string" || !post.url.startsWith("https://x.com/")) {
-  throw new Error("POST.json must name an x.com post URL");
+const match = /^https:\/\/(?:www\.|mobile\.)?(?:x\.com|twitter\.com)\/[^/]+\/status\/(\d+)$/.exec(
+  typeof post.url === "string" ? post.url : ""
+);
+if (!match) {
+  throw new Error("POST.json must name an x.com post URL of the form https://x.com/<handle>/status/<id>");
 }
+const postId = match[1];
 
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "POST.json"), raw, "utf8");
-console.log("post:", post.url);
+console.log("post:", post.url, "id:", postId);
